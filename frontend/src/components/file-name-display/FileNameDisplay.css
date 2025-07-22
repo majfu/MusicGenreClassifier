@@ -1,0 +1,23 @@
+.selected-file-wrapper {
+    position: relative;
+    height: 78px;
+    width: 739px;
+}
+.selected-file-icon {
+    position: absolute;
+    top: 0;
+}
+
+.selected-file-name {
+    font-size: 36px;
+    font-family: 'Irish Grover';
+    max-width: 700px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #564D53;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

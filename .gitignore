@@ -1,0 +1,10 @@
+# created by virtualenv automatically
+.venv/bin
+node_modules/
+venv/
+.venv
+__pycache__/
+*.pyc
+*config.py
+.DS_Store
+.idea
