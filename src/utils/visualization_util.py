@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 import librosa
 import numpy as np
 import metadata_util
-from audio_preprocessing import preprocessing_util
-import config
+from src.config import config
 
 
 def plot_genre_distribution_graph():
@@ -84,52 +83,24 @@ def plot_periodogram(frequency_bins, periodogram_estimates):
     plt.show()
 
 
-def visualize_windowing_result(wav_file_path):
-    audio_signal, sampling_rate = preprocessing_util.load_audio_file(wav_file_path)
-    frame_length_samples = preprocessing_util.get_frame_length_samples(sampling_rate)
-    hop_length_samples = preprocessing_util.get_hop_length_samples(sampling_rate)
-
-    frames = preprocessing_util.get_audio_frames(audio_signal, frame_length_samples, hop_length_samples)
-    windowed_frames = preprocessing_util.get_windowed_frames(frames, frame_length_samples)
-
-    frame_before_windowing = frames[500]
+def visualize_windowing_result(original_frames, windowed_frames, sampling_rate):
+    frame_before_windowing = original_frames[500]
     frame_after_windowing = windowed_frames[500]
 
     plot_two_waveform_graphs(frame_before_windowing, frame_after_windowing, sampling_rate)
 
 
-def visualize_fft_result(wav_file_path):
-    audio_signal, sampling_rate = preprocessing_util.load_audio_file(wav_file_path)
-    frame_length_samples = preprocessing_util.get_frame_length_samples(sampling_rate)
-    hop_length_samples = preprocessing_util.get_hop_length_samples(sampling_rate)
-
-    frames = preprocessing_util.get_audio_frames(audio_signal, frame_length_samples, hop_length_samples)
-    windowed_frames = preprocessing_util.get_windowed_frames(frames, frame_length_samples)
-    fft_frames = preprocessing_util.get_fft_frames(windowed_frames)
-
+def visualize_fft_result(windowed_frames, fft_frames, sampling_rate):
     windowed_frame = windowed_frames[500]
     fft_frame = fft_frames[500]
 
     plot_waveform_and_fft_graphs(windowed_frame, fft_frame, sampling_rate)
 
 
-def visualize_periodogram_result(wav_file_path):
-    audio_signal, sampling_rate = preprocessing_util.load_audio_file(wav_file_path)
-    frame_length_samples = preprocessing_util.get_frame_length_samples(sampling_rate)
-    hop_length_samples = preprocessing_util.get_hop_length_samples(sampling_rate)
-
-    frames = preprocessing_util.get_audio_frames(audio_signal, frame_length_samples, hop_length_samples)
-    windowed_frames = preprocessing_util.get_windowed_frames(frames, frame_length_samples)
-    fft_frames = preprocessing_util.get_fft_frames(windowed_frames)
-
-    frequency_bins = preprocessing_util.get_fft_frequency_bins(frame_length_samples, sampling_rate)
-    periodogram_estimates = preprocessing_util.get_periodogram_estimates(fft_frames, frame_length_samples)
-
+def visualize_periodogram_result(frequency_bins, periodogram_estimates):
     plot_periodogram(frequency_bins, periodogram_estimates[500])
 
 
-def print_feature_array_result(wav_file_path):
-    feature_array = preprocessing_util.get_feature_array(wav_file_path)
-
+def print_feature_array_result(feature_array):
     print(f"Feature array shape is {feature_array.shape}")
     print(f"One feature vector looks like this: {feature_array[500]}")
