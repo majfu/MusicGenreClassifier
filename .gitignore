@@ -6,5 +6,6 @@ venv/
 __pycache__/
 *.pyc
 *config.py
+*test_runs.py
 .DS_Store
 .idea
