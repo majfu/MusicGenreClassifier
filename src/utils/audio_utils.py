@@ -16,7 +16,7 @@ def convert_mp3_to_wav_in_directory(fma_small_folder_path):
 
             try:
                 convert_mp3_to_wav(mp3_path, wav_path)
-                if config.should_delete_mp3:
+                if config.SHOULD_DELETE_MP3:
                     os.remove(mp3_path)
 
             except Exception as e:

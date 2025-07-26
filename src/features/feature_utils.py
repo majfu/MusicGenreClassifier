@@ -8,7 +8,7 @@ from src.utils.metadata_util import get_valid_track_genre_pairs, map_genre_id_to
 
 def save_feature_array(wav_path, feature_tensor):
     output_path = (wav_path.
-                   replace(config.fma_small_dataset_folder_name, config.feature_files_folder_name).
+                   replace(config.FMA_SMALL_DATASET_FOLDER_NAME, config.FEATURE_FILES_FOLDER_NAME).
                    replace('.wav', '.pt'))
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     torch.save(feature_tensor, output_path)
@@ -16,7 +16,7 @@ def save_feature_array(wav_path, feature_tensor):
 
 def create_and_save_feature_arrays():
     feature_extractor = FeatureExtractor()
-    for root, dirs, files in os.walk(config.fma_small_folder_path):
+    for root, dirs, files in os.walk(config.FMA_SMALL_FOLDER_PATH):
         for file in files:
             if not file.endswith('.wav'):
                 continue
@@ -40,7 +40,7 @@ def create_labels_file():
     the rest of the columns is multi-label one-hot encoding of genre titles
     """
     labels_df = get_one_hot_encoded_labels()
-    labels_df.to_csv(config.encoded_labels_output_path, index=False)
+    labels_df.to_csv(config.ENCODED_LABELS_OUTPUT_PATH, index=False)
 
 
 def get_one_hot_encoded_labels():

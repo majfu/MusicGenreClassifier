@@ -2,8 +2,8 @@ from src.utils import fma_utils
 from src.config import config
 import pandas as pd
 
-tracks_metadata_file = fma_utils.load(config.tracks_metadata_dir)
-genres_metadata_file = fma_utils.load(config.genres_metadata_dir)
+tracks_metadata_file = fma_utils.load(config.TRACKS_METADATA_DIR)
+genres_metadata_file = fma_utils.load(config.GENRES_METADATA_DIR)
 
 
 def get_valid_track_genre_pairs():
@@ -12,7 +12,7 @@ def get_valid_track_genre_pairs():
     underrepresented_genre_ids_list = get_underrepresented_genre_ids_list(genre_counts)
 
     filtered_pairs = remove_specified_entries(all_track_genre_pairs, underrepresented_genre_ids_list, 'genre_id')
-    filtered_pairs = remove_specified_entries(filtered_pairs, config.corrupted_track_ids_list, 'track_id')
+    filtered_pairs = remove_specified_entries(filtered_pairs, config.CORRUPTED_TRACK_IDS_LIST, 'track_id')
     return filtered_pairs
 
 
@@ -34,7 +34,7 @@ def get_genre_counts(track_genre_pairs_df):
 
 
 def get_underrepresented_genre_ids_list(genre_counts_df):
-    underrepresented_genre_counts = genre_counts_df[genre_counts_df['genre_count'] <= config.min_genre_samples_count]
+    underrepresented_genre_counts = genre_counts_df[genre_counts_df['genre_count'] <= config.MIN_GENRE_SAMPLES_COUNT]
     return underrepresented_genre_counts['genre_id'].tolist()
 
 

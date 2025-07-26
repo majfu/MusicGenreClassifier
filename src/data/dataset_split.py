@@ -3,12 +3,12 @@
 # the split will be 70:15:15
 import numpy as np
 from skmultilearn.model_selection import iterative_train_test_split
-from src.config.config import encoded_labels_output_path, VAL_RATIO, TEST_RATIO
+from src.config.config import ENCODED_LABELS_OUTPUT_PATH, VAL_RATIO, TEST_RATIO
 import pandas as pd
 
 
 def get_dataset_splits():
-    encoded_labels_df = pd.read_csv(encoded_labels_output_path)
+    encoded_labels_df = pd.read_csv(ENCODED_LABELS_OUTPUT_PATH)
 
     track_ids = encoded_labels_df[['track_id']].values
     labels = encoded_labels_df.drop(columns=['track_id']).values

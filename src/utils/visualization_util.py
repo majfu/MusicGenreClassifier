@@ -11,7 +11,7 @@ def plot_genre_distribution_graph():
     genre_counts.plot(kind='bar')
     plt.xticks(rotation=45, ha='right')
     plt.ylabel("Number of Tracks")
-    plt.title(f"Genre (>={config.min_genre_samples_count} samples) Distribution In Small Subset")
+    plt.title(f"Genre (>={config.MIN_GENRE_SAMPLES_COUNT} samples) Distribution In Small Subset")
     plt.show()
 
 
