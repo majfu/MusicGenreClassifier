@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 import librosa
 import numpy as np
-import metadata_util
+from src.utils.metadata_util import get_genre_titles_with_counts
 from src.config import config
 
 
 def plot_genre_distribution_graph():
     plt.figure(figsize=(13, 5))
-    genre_counts = metadata_util.get_genre_titles_with_counts()
+    genre_counts = get_genre_titles_with_counts()
     genre_counts.plot(kind='bar')
     plt.xticks(rotation=45, ha='right')
     plt.ylabel("Number of Tracks")
