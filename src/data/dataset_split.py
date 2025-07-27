@@ -3,7 +3,7 @@
 # the split will be 70:15:15
 import numpy as np
 from skmultilearn.model_selection import iterative_train_test_split
-from src.config.config import ENCODED_LABELS_OUTPUT_PATH, VAL_RATIO, TEST_RATIO
+from src.config.config import *
 import pandas as pd
 
 
@@ -38,3 +38,11 @@ def get_test_val_split_ratio():
 
 def get_test_split_ratio():
     return TEST_RATIO / get_test_val_split_ratio()
+
+
+def create_splits_files():
+    train_df, val_df, test_df = get_dataset_splits()
+
+    train_df.to_csv(TRAIN_SPLIT_OUTPUT_PATH, index=False)
+    val_df.to_csv(VAL_SPLIT_OUTPUT_PATH, index=False)
+    test_df.to_csv(TEST_SPLIT_OUTPUT_PATH, index=False)
