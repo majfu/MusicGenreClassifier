@@ -57,3 +57,11 @@ def get_genre_titles_with_counts():
     counts = get_valid_genre_counts()
     genre_names = genres_metadata_file['title']
     return counts.rename(index=genre_names)
+
+
+def get_one_hot_encoded_labels_df():
+    valid_track_genre_pairs = get_valid_track_genre_pairs()
+    track_genre_title_pairs = map_genre_id_to_title(valid_track_genre_pairs)
+
+    one_hot_encoded_genres = pd.get_dummies(track_genre_title_pairs).groupby('track_id').sum().reset_index()
+    return one_hot_encoded_genres

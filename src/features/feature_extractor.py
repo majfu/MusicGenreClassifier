@@ -2,10 +2,11 @@ import numpy as np
 import librosa
 from scipy.fftpack import dct
 import scipy.fft
-from src.utils.audio_utils import load_audio_file, convert_ms_to_samples
+from src.utils.io_utils import load_audio_file
 from config import hyperparameters
 
 LOWEST_FREQUENCY = 0
+SECOND_IN_MS = 1000
 
 
 class FeatureExtractor:
@@ -41,10 +42,14 @@ class FeatureExtractor:
         return feature_vectors
 
     def get_frame_length_samples(self, sampling_rate):
-        return convert_ms_to_samples(sampling_rate, self.frame_length_ms)
+        return self.convert_ms_to_samples(sampling_rate, self.frame_length_ms)
 
     def get_hop_length_samples(self, sampling_rate):
-        return convert_ms_to_samples(sampling_rate, self.hop_length_ms)
+        return self.convert_ms_to_samples(sampling_rate, self.hop_length_ms)
+
+    @staticmethod
+    def convert_ms_to_samples(sampling_rate, length_ms):
+        return int(sampling_rate * length_ms / SECOND_IN_MS)
 
     @staticmethod
     def frame_audio(audio_signal, frame_length_samples, hop_length_samples):
