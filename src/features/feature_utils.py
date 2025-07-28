@@ -49,3 +49,7 @@ def get_one_hot_encoded_labels():
 
     one_hot_encoded_genres = pd.get_dummies(track_genre_title_pairs).groupby('track_id').sum().reset_index()
     return one_hot_encoded_genres
+
+
+def load_encoded_labels_df(encoded_labels_file_path=config.ENCODED_LABELS_OUTPUT_PATH):
+    return pd.read_csv(encoded_labels_file_path)
