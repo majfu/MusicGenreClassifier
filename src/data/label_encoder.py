@@ -5,15 +5,15 @@ from src.utils import fma_utils
 
 
 class LabelEncoder:
-    def __init__(self, tracks_metadata_file_path=None, genres_metadata_file_path=None, track_ids_to_delete=None,
+    def __init__(self, tracks_metadata_file_path=None, genres_metadata_file_path=None, track_ids_to_remove=None,
                  min_genre_samples_count=None):
         self.tracks_metadata_file_path = tracks_metadata_file_path or TRACKS_METADATA_FILE_PATH
         self.genres_metadata_file_path = genres_metadata_file_path or GENRES_METADATA_FILE_PATH
-        self.track_ids_to_delete = track_ids_to_delete or []
+        self.track_ids_to_remove = track_ids_to_remove or []
         self.min_genre_samples_count = min_genre_samples_count or MIN_GENRE_SAMPLES_COUNT
 
-    def add_track_id_to_delete(self, track_id):
-        self.track_ids_to_delete.append(track_id)
+    def add_track_id_to_remove(self, track_id):
+        self.track_ids_to_remove.append(track_id)
 
     def get_one_hot_encoded_labels_df(self):
         valid_track_genre_pairs = self.get_valid_track_genre_pairs()
@@ -32,7 +32,7 @@ class LabelEncoder:
                                                              underrepresented_genre_ids_list,
                                                              'genre_id')
         filtered_pairs = self.remove_entries_in_column_by_id(filtered_pairs,
-                                                             self.track_ids_to_delete,
+                                                             self.track_ids_to_remove,
                                                              'track_id')
         return filtered_pairs
 

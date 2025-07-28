@@ -6,7 +6,7 @@ from pydub import AudioSegment
 import librosa
 
 
-def convert_mp3_to_wav_in_directory(root_folder_path=FMA_SMALL_FOLDER_PATH,
+def convert_mp3_to_wav_in_directory(label_encoder, root_folder_path=FMA_SMALL_FOLDER_PATH,
                                     should_delete_mp3=SHOULD_DELETE_MP3):
     for root, dirs, files in os.walk(root_folder_path):
         for file in files:
@@ -21,6 +21,7 @@ def convert_mp3_to_wav_in_directory(root_folder_path=FMA_SMALL_FOLDER_PATH,
                     os.remove(mp3_path)
 
             except Exception as e:
+                label_encoder.add_track_id_to_remove(file.replace('.mp3', ''))
                 print(f"Error converting {mp3_path}: {e}")
 
 
