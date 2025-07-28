@@ -3,7 +3,7 @@ from src.config import config
 import torch
 from src.features.feature_extractor import FeatureExtractor
 import pandas as pd
-from src.utils.metadata_util import get_valid_track_genre_pairs, map_genre_id_to_title
+from src.utils.metadata_utils import get_valid_track_genre_pairs, map_genre_id_to_title
 
 
 def save_feature_array(wav_path, feature_tensor):

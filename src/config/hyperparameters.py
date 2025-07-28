@@ -1,10 +1,10 @@
-frame_length_ms = 25
-hop_length_ms = 10
+FRAME_LENGTH_MS = 25
+HOP_LENGTH_MS = 10
 
-number_of_mfcc_to_return = 8
-mel_bands_number = 26
-number_of_retained_coefficients = 8
-delta_window_width = 5
+NUMBER_OF_MFCC_TO_RETURN = 8
+MEL_BANDS_NUMBER = 26
+NUMBER_OF_RETAINED_COEFFICIENTS = 8
+DELTA_WINDOW_WIDTH = 5
 
 VAL_RATIO = 0.15
 TEST_RATIO = 0.15

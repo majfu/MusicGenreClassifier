@@ -10,11 +10,11 @@ LOWEST_FREQUENCY = 0
 
 class FeatureExtractor:
     def __init__(self):
-        self.frame_length_ms = hyperparameters.frame_length_ms
-        self.hop_length_ms = hyperparameters.hop_length_ms
-        self.mel_bands_number = hyperparameters.mel_bands_number
-        self.number_of_retained_coefficients = hyperparameters.number_of_retained_coefficients
-        self.delta_window_width = hyperparameters.delta_window_width
+        self.frame_length_ms = hyperparameters.FRAME_LENGTH_MS
+        self.hop_length_ms = hyperparameters.HOP_LENGTH_MS
+        self.mel_bands_number = hyperparameters.MEL_BANDS_NUMBER
+        self.number_of_retained_coefficients = hyperparameters.NUMBER_OF_RETAINED_COEFFICIENTS
+        self.delta_window_width = hyperparameters.DELTA_WINDOW_WIDTH
 
     def extract_features(self, wav_file_path):
         audio_signal, sampling_rate = load_audio_file(wav_file_path)

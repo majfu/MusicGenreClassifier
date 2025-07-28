@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import librosa
 import numpy as np
-from src.utils.metadata_util import get_genre_titles_with_counts
+from src.utils.metadata_utils import get_genre_titles_with_counts
 from src.config import config
 
 
