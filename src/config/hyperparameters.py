@@ -5,3 +5,6 @@ number_of_mfcc_to_return = 8
 mel_bands_number = 26
 number_of_retained_coefficients = 8
 delta_window_width = 5
+
+VAL_RATIO = 0.15
+TEST_RATIO = 0.15
