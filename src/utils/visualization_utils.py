@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import librosa
 import numpy as np
 from src.utils.metadata_utils import get_genre_titles_with_counts
-from src.config import config
+from src.config.hyperparameters import MIN_GENRE_SAMPLES_COUNT
 
 
 def plot_genre_distribution_graph():
@@ -11,7 +11,7 @@ def plot_genre_distribution_graph():
     genre_counts.plot(kind='bar')
     plt.xticks(rotation=45, ha='right')
     plt.ylabel("Number of Tracks")
-    plt.title(f"Genre (>={config.MIN_GENRE_SAMPLES_COUNT} samples) Distribution In Small Subset")
+    plt.title(f"Genre (>={MIN_GENRE_SAMPLES_COUNT} samples) Distribution In Small Subset")
     plt.show()
 
 

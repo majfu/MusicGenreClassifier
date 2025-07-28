@@ -1,4 +1,4 @@
-from src.config import config
+from src.config.config import *
 import pandas as pd
 import os
 import torch
@@ -6,8 +6,8 @@ from pydub import AudioSegment
 import librosa
 
 
-def convert_mp3_to_wav_in_directory(root_folder_path=config.FMA_SMALL_FOLDER_PATH,
-                                    should_delete_mp3=config.SHOULD_DELETE_MP3):
+def convert_mp3_to_wav_in_directory(root_folder_path=FMA_SMALL_FOLDER_PATH,
+                                    should_delete_mp3=SHOULD_DELETE_MP3):
     for root, dirs, files in os.walk(root_folder_path):
         for file in files:
             if not file.endswith('.mp3'):
@@ -35,20 +35,20 @@ def load_audio_file(wav_file_path):
 
 
 def create_labels_file(labels_df):
-    labels_df.to_csv(config.ENCODED_LABELS_OUTPUT_PATH, index=False)
+    labels_df.to_csv(ENCODED_LABELS_OUTPUT_PATH, index=False)
 
 
-def load_encoded_labels_df(encoded_labels_file_path=config.ENCODED_LABELS_OUTPUT_PATH):
+def load_encoded_labels_df(encoded_labels_file_path=ENCODED_LABELS_OUTPUT_PATH):
     return pd.read_csv(encoded_labels_file_path)
 
 
 def create_splits_files(train_df, val_df, test_df):
-    train_df.to_csv(config.TRAIN_SPLIT_OUTPUT_PATH, index=False)
-    val_df.to_csv(config.VAL_SPLIT_OUTPUT_PATH, index=False)
-    test_df.to_csv(config.TEST_SPLIT_OUTPUT_PATH, index=False)
+    train_df.to_csv(TRAIN_SPLIT_OUTPUT_PATH, index=False)
+    val_df.to_csv(VAL_SPLIT_OUTPUT_PATH, index=False)
+    test_df.to_csv(TEST_SPLIT_OUTPUT_PATH, index=False)
 
 
-def create_and_save_feature_arrays(feature_extractor, root_folder=config.FMA_SMALL_FOLDER_PATH):
+def create_and_save_feature_arrays(feature_extractor, root_folder=FMA_SMALL_FOLDER_PATH):
     for root, dirs, files in os.walk(root_folder):
         for file in files:
             if not file.endswith('.wav'):
@@ -66,7 +66,7 @@ def create_and_save_feature_arrays(feature_extractor, root_folder=config.FMA_SMA
 
 def save_feature_array(wav_path, feature_tensor):
     output_path = (wav_path.
-                   replace(config.FMA_SMALL_DATASET_FOLDER_NAME, config.FEATURE_FILES_FOLDER_NAME).
+                   replace(FMA_SMALL_FOLDER_PATH, FEATURE_VECTORS_FOLDER_PATH).
                    replace('.wav', '.pt'))
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     torch.save(feature_tensor, output_path)
