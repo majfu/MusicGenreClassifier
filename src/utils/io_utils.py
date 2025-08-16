@@ -1,4 +1,3 @@
-import shutil
 from src.config.config import *
 import pandas as pd
 import os
@@ -45,9 +44,10 @@ def convert_mp3_to_wav_in_directory(label_encoder, root_folder_path=AUDIO_FILES_
 def rename_wav_files_with_reset_index(audio_files_folder_path=AUDIO_FILES_FOLDER_PATH,
                                       index_mapping_output_path=INDEX_MAPPING_FILE_PATH):
     index_mapping_df = pd.DataFrame(columns=['original_track_id', 'new_track_id'])
+    audio_files_path = Path(audio_files_folder_path)
     index_mapping_path = Path(index_mapping_output_path)
 
-    for index, wav_file in enumerate(audio_files_folder_path.rglob('*.wav'), start=0):
+    for index, wav_file in enumerate(audio_files_path.rglob('*.wav'), start=0):
         old_file_name = wav_file.stem
         new_file_name = f'{index}.wav'
         output_path = index_mapping_path / new_file_name
