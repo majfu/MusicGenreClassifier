@@ -2,6 +2,7 @@ from src.config.config import *
 from src.config.hyperparameters import MIN_GENRE_SAMPLES_COUNT
 import pandas as pd
 from src.utils import fma_utils
+from src.utils.io_utils import load_index_mapping_df
 
 
 class LabelEncoder:
@@ -19,8 +20,8 @@ class LabelEncoder:
         valid_track_genre_pairs = self.get_valid_track_genre_pairs()
         track_genre_title_pairs = self.map_genre_id_to_title(valid_track_genre_pairs)
 
-        one_hot_encoded_genres = pd.get_dummies(track_genre_title_pairs).groupby('track_id').sum().reset_index()
-        return one_hot_encoded_genres
+        one_hot_encoded_genres = pd.get_dummies(track_genre_title_pairs).groupby('track_id').sum()
+        return self.reset_track_indices(one_hot_encoded_genres)
 
     def get_valid_track_genre_pairs(self):
         fma_small_metadata = self.get_small_subset_tracks_metadata_df()
@@ -66,3 +67,17 @@ class LabelEncoder:
         genre_titles = genres_metadata_df.reset_index()[['genre_id', 'title']]
         left_join_tables = pd.merge(track_genre_pairs_df, genre_titles, on='genre_id', how='left')
         return left_join_tables[['track_id', 'title']]
+
+    @staticmethod
+    def reset_track_indices(one_hot_encoded_genres):
+        index_mapping_df = load_index_mapping_df()
+
+        mapped_labels_df = (
+            one_hot_encoded_genres
+            .merge(index_mapping_df, left_on='track_id', right_on='original_track_id')
+            .drop(columns=['track_id', 'original_track_id'])
+            .rename(columns={'new_track_id': 'track_id'})
+            .sort_values(by='track_id')
+            .reset_index(drop=True)
+        )
+        return mapped_labels_df
