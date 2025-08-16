@@ -20,7 +20,7 @@ class LabelEncoder:
         valid_track_genre_pairs = self.get_valid_track_genre_pairs()
         track_genre_title_pairs = self.map_genre_id_to_title(valid_track_genre_pairs)
 
-        one_hot_encoded_genres = pd.get_dummies(track_genre_title_pairs).groupby('track_id').sum()
+        one_hot_encoded_genres = pd.get_dummies(track_genre_title_pairs).groupby('track_id').sum().reset_index()
         return self.reset_track_indices(one_hot_encoded_genres)
 
     def get_valid_track_genre_pairs(self):
@@ -80,4 +80,5 @@ class LabelEncoder:
             .sort_values(by='track_id')
             .reset_index(drop=True)
         )
+        mapped_labels_df.insert(0, 'track_id', mapped_labels_df.pop('track_id'))
         return mapped_labels_df
