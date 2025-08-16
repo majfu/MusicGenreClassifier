@@ -50,7 +50,7 @@ def rename_wav_files_with_reset_index(audio_files_folder_path=AUDIO_FILES_FOLDER
     for index, wav_file in enumerate(audio_files_path.rglob('*.wav'), start=0):
         old_file_name = wav_file.stem
         new_file_name = f'{index}.wav'
-        output_path = index_mapping_path / new_file_name
+        output_path = audio_files_path / new_file_name
         shutil.move(str(wav_file), str(output_path))
         index_mapping_df.loc[len(index_mapping_df)] = [old_file_name, new_file_name]
 
