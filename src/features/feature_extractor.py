@@ -3,7 +3,7 @@ import librosa
 from scipy.fftpack import dct
 import scipy.fft
 from src.utils.io_utils import load_audio_file
-from config import hyperparameters
+from src.config import hyperparameters
 
 LOWEST_FREQUENCY = 0
 SECOND_IN_MS = 1000
