@@ -21,6 +21,7 @@ class LabelEncoder:
         track_genre_title_pairs = self.map_genre_id_to_title(valid_track_genre_pairs)
 
         one_hot_encoded_genres = pd.get_dummies(track_genre_title_pairs).groupby('track_id').sum().reset_index()
+        print(one_hot_encoded_genres.head())
         return self.reset_track_indices(one_hot_encoded_genres)
 
     def get_valid_track_genre_pairs(self):
