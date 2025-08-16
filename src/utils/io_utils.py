@@ -1,28 +1,64 @@
+import shutil
 from src.config.config import *
 import pandas as pd
 import os
 import torch
 from pydub import AudioSegment
 import librosa
+from pathlib import Path
+import shutil
 
 
-def convert_mp3_to_wav_in_directory(label_encoder, root_folder_path=FMA_SMALL_FOLDER_PATH,
+def move_mp3_files_to_folder(mp3_root_folder_path=FMA_SMALL_FOLDER_PATH,
+                             destination_folder_path=AUDIO_FILES_FOLDER_PATH):
+    root_path = Path(mp3_root_folder_path)
+    destination_path = Path(destination_folder_path)
+    destination_path.mkdir(parents=True, exist_ok=True)
+
+    for mp3_file in root_path.rglob('*.mp3'):
+        try:
+            destination_file_path = destination_path / mp3_file.name
+            shutil.move(str(mp3_file), str(destination_file_path))
+
+        except Exception as e:
+            print(f"Error moving {mp3_file}: {e}")
+
+
+def convert_mp3_to_wav_in_directory(label_encoder, root_folder_path=AUDIO_FILES_FOLDER_PATH,
                                     should_delete_mp3=SHOULD_DELETE_MP3):
-    for root, dirs, files in os.walk(root_folder_path):
-        for file in files:
-            if not file.endswith('.mp3'):
-                continue
-            mp3_path = os.path.join(root, file)
-            wav_path = mp3_path.replace('.mp3', '.wav')
+    root_path = Path(root_folder_path)
 
-            try:
-                convert_mp3_to_wav(mp3_path, wav_path)
-                if should_delete_mp3:
-                    os.remove(mp3_path)
+    for mp3_file in root_path.rglob('*.mp3'):
+        try:
+            wav_path = mp3_file.with_suffix('.wav')
+            convert_mp3_to_wav(mp3_file, wav_path)
 
-            except Exception as e:
-                label_encoder.add_track_id_to_remove(file.replace('.mp3', ''))
-                print(f"Error converting {mp3_path}: {e}")
+        except Exception as e:
+            track_id = mp3_file.stem
+            label_encoder.add_track_id_to_remove(track_id)
+            print(f"Error converting {mp3_file}: {e}")
+
+        if should_delete_mp3:
+            mp3_file.unlink()
+
+
+def rename_wav_files_with_reset_index(audio_files_folder_path=AUDIO_FILES_FOLDER_PATH,
+                                      index_mapping_output_path=INDEX_MAPPING_FILE_PATH):
+    index_mapping_df = pd.DataFrame(columns=['original_track_id', 'new_track_id'])
+    index_mapping_path = Path(index_mapping_output_path)
+
+    for index, wav_file in enumerate(audio_files_folder_path.rglob('*.wav'), start=0):
+        old_file_name = wav_file.stem
+        new_file_name = f'{index}.wav'
+        output_path = index_mapping_path / new_file_name
+        shutil.move(str(wav_file), str(output_path))
+        index_mapping_df.loc[len(index_mapping_df)] = [old_file_name, new_file_name]
+
+    index_mapping_df.to_csv(index_mapping_path, index=False)
+
+
+def load_index_mapping_df(index_mapping_file_path=INDEX_MAPPING_FILE_PATH):
+    return pd.read_csv(index_mapping_file_path)
 
 
 def convert_mp3_to_wav(input_path, output_path):
@@ -49,8 +85,9 @@ def create_splits_files(train_df, val_df, test_df):
     test_df.to_csv(TEST_SPLIT_OUTPUT_PATH, index=False)
 
 
-def create_and_save_feature_arrays(feature_extractor, root_folder=FMA_SMALL_FOLDER_PATH):
-    for root, dirs, files in os.walk(root_folder):
+def create_and_save_feature_arrays(feature_extractor, audio_files_folder_path=AUDIO_FILES_FOLDER_PATH,
+                                   output_folder_path=FEATURE_VECTORS_FOLDER_PATH):
+    for root, dirs, files in os.walk(audio_files_folder_path):
         for file in files:
             if not file.endswith('.wav'):
                 continue
@@ -59,15 +96,19 @@ def create_and_save_feature_arrays(feature_extractor, root_folder=FMA_SMALL_FOLD
             try:
                 feature_array = feature_extractor.extract_features(wav_path)
                 feature_tensor = torch.from_numpy(feature_array).float()
-                save_feature_array(wav_path, feature_tensor)
+                save_feature_array(wav_path, feature_tensor, audio_files_folder_path, output_folder_path)
 
             except Exception as e:
                 print(f"Error extracting features from {wav_path}: {e}")
 
 
-def save_feature_array(wav_path, feature_tensor):
+def save_feature_array(wav_path, feature_tensor, audio_files_folder_path, output_folder_path):
     output_path = (wav_path.
-                   replace(FMA_SMALL_FOLDER_PATH, FEATURE_VECTORS_FOLDER_PATH).
+                   replace(audio_files_folder_path, output_folder_path).
                    replace('.wav', '.pt'))
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     torch.save(feature_tensor, output_path)
+
+
+def load_feature_tensor(pt_file_path):
+    return torch.load(pt_file_path).float()
