@@ -3,12 +3,13 @@ import pandas as pd
 from src.utils.io_utils import load_feature_tensor
 from torch.utils.data import DataLoader
 import torch
+from pathlib import Path
 
 
 class FeatureDataset(Dataset):
     def __init__(self, encoded_labels_csv_path, feature_tensors_dir, transform=None, target_transform=None):
         self.audio_labels = pd.read_csv(encoded_labels_csv_path)
-        self.feature_tensors_dir = feature_tensors_dir
+        self.feature_tensors_dir = Path(feature_tensors_dir)
         self.transform = transform
         self.target_transform = target_transform
 
