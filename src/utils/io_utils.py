@@ -67,6 +67,16 @@ def convert_mp3_to_wav(input_path, output_path):
     audio_mp3_file.export(output_path, format='wav')
 
 
+def remove_outlier_files(label_encoder, audio_files_folder_path=AUDIO_FILES_FOLDER_PATH):
+    audio_files_path = Path(audio_files_folder_path)
+
+    for track_id in LENGTH_OUTLIERS_TRACK_IDS:
+        label_encoder.add_track_id_to_remove(track_id)
+
+        audio_path = audio_files_path / f"{track_id}.wav"
+        audio_path.unlink()
+
+
 def load_audio_file(wav_file_path, sampling_rate=SAMPLING_RATE):
     audio_signal, sampling_rate = librosa.load(wav_file_path, sr=sampling_rate)
     return pad_or_truncate(audio_signal), sampling_rate
