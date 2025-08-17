@@ -17,7 +17,7 @@ class FeatureDataset(Dataset):
         return len(self.audio_labels)
 
     def __getitem__(self, index):
-        track_id = self.audio_labels.iloc[index]['track_id']
+        track_id = self._get_track_id_by_index(index)
 
         feature_tensor_path = self.feature_tensors_dir / f'{track_id}.pt'
         feature_tensor = load_feature_tensor(feature_tensor_path)
@@ -31,6 +31,9 @@ class FeatureDataset(Dataset):
             label = self.target_transform(label)
 
         return feature_tensor, label
+
+    def _get_track_id_by_index(self, index):
+        return self.audio_labels.iloc[index]['track_id']
 
     def __get_global_mean_and_std(self, batch_size=32):
         data_loader = DataLoader(self, batch_size=batch_size, shuffle=False)
