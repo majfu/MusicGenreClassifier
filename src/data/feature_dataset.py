@@ -2,6 +2,7 @@ from torch.utils.data import Dataset
 import pandas as pd
 from src.utils.io_utils import load_feature_tensor
 from torch.utils.data import DataLoader
+import torch
 
 
 class FeatureDataset(Dataset):
@@ -19,7 +20,9 @@ class FeatureDataset(Dataset):
 
         feature_tensor_path = self.feature_tensors_dir / f'{track_id}.pt'
         feature_tensor = load_feature_tensor(feature_tensor_path)
-        label = self.audio_labels.columns[self.audio_labels.iloc[index] == 1]
+
+        label_row = self.audio_labels.iloc[index].drop('track_id')
+        label = torch.tensor(label_row.values, dtype=torch.float32)
 
         if self.transform:
             feature_tensor = self.transform(feature_tensor)
