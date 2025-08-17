@@ -1,4 +1,5 @@
 from src.config.config import *
+from src.config.hyperparameters import *
 import pandas as pd
 import os
 import torch
@@ -66,9 +67,13 @@ def convert_mp3_to_wav(input_path, output_path):
     audio_mp3_file.export(output_path, format='wav')
 
 
-def load_audio_file(wav_file_path):
-    audio_signal, sampling_rate = librosa.load(wav_file_path, sr=None)
-    return audio_signal, sampling_rate
+def load_audio_file(wav_file_path, sampling_rate=SAMPLING_RATE):
+    audio_signal, sampling_rate = librosa.load(wav_file_path, sr=sampling_rate)
+    return pad_or_truncate(audio_signal), sampling_rate
+
+
+def pad_or_truncate(audio_signal):
+    return librosa.util.fix_length(audio_signal, size=AUDIO_LENGTH_SAMPLES)
 
 
 def create_labels_file(labels_df):
