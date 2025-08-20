@@ -25,8 +25,8 @@ def get_class_counts(labels_df):
     return labels_df.drop(columns=['track_id']).sum(axis=0)
 
 
-def get_class_weights_tensor():
-    labels_df = load_encoded_labels_df(encoded_labels_file_path=TRAIN_SPLIT_OUTPUT_PATH)
+def get_class_weights_tensor(encoded_labels_file_path=TRAIN_SPLIT_OUTPUT_PATH):
+    labels_df = load_encoded_labels_df(encoded_labels_file_path=encoded_labels_file_path)
     class_number = get_class_number(labels_df)
     samples_number = get_samples_number(labels_df)
 
