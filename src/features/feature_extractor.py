@@ -19,6 +19,17 @@ class FeatureExtractor:
         self.delta_window_width = delta_window_width or hyperparameters.DELTA_WINDOW_WIDTH
 
     def extract_features(self, wav_file_path):
+        db_mel_spectograms = self.extract_spectograms(wav_file_path)
+        mel_cepstral_coefficients = self.get_mel_cepstral_coefficients(db_mel_spectograms)
+
+        truncated_coefficients = self.truncate_coefficients(mel_cepstral_coefficients)
+        mfcc_deltas = self.calculate_mfcc_deltas(truncated_coefficients)
+        mfcc_delta_deltas = self.calculate_mfcc_delta_deltas(truncated_coefficients)
+
+        feature_vectors = np.concatenate((truncated_coefficients, mfcc_deltas, mfcc_delta_deltas), axis=1)
+        return feature_vectors
+
+    def extract_spectograms(self, wav_file_path):
         audio_signal, sampling_rate = load_audio_file(wav_file_path)
         frame_length_samples = self.get_frame_length_samples(sampling_rate)
         hop_length_samples = self.get_hop_length_samples(sampling_rate)
@@ -29,17 +40,13 @@ class FeatureExtractor:
 
         fft_frames = self.apply_fft(windowed_frames)
         periodogram_estimates = self.get_periodogram_estimates(fft_frames, frame_length_samples)
-
         number_of_fft_coefficients = self.get_fft_coefficients_number(periodogram_estimates)
-        mel_cepstral_coefficients = self.get_mel_cepstral_coefficients(sampling_rate, number_of_fft_coefficients,
-                                                                       periodogram_estimates)
 
-        truncated_coefficients = self.truncate_coefficients(mel_cepstral_coefficients)
-        mfcc_deltas = self.calculate_mfcc_deltas(truncated_coefficients)
-        mfcc_delta_deltas = self.calculate_mfcc_delta_deltas(truncated_coefficients)
+        mel_filter_banks = self.get_mel_filter_banks(sampling_rate, number_of_fft_coefficients)
+        mel_spectograms = self.get_mel_spectograms(periodogram_estimates, mel_filter_banks)
+        db_mel_spectograms = self.convert_power_to_db(mel_spectograms)
 
-        feature_vectors = np.concatenate((truncated_coefficients, mfcc_deltas, mfcc_delta_deltas), axis=1)
-        return feature_vectors
+        return db_mel_spectograms
 
     def get_frame_length_samples(self, sampling_rate):
         return self.convert_ms_to_samples(sampling_rate, self.frame_length_ms)
@@ -78,11 +85,8 @@ class FeatureExtractor:
     def get_fft_coefficients_number(periodogram_estimates):
         return periodogram_estimates.shape[1] * 2 - 1
 
-    def get_mel_cepstral_coefficients(self, sampling_rate, number_of_fft_coefficients, periodogram_estimates):
-        mel_filter_banks = self.get_mel_filter_banks(sampling_rate, number_of_fft_coefficients)
-        mel_spectograms = self.get_mel_spectograms(periodogram_estimates, mel_filter_banks)
-        log_mel_coefficients = self.get_log_mel_coefficients(mel_spectograms)
-        return self.apply_discrete_cosine_transform(log_mel_coefficients)
+    def get_mel_cepstral_coefficients(self, db_mel_spectograms):
+        return self.apply_discrete_cosine_transform(db_mel_spectograms)
 
     def get_mel_filter_banks(self, sampling_rate, number_of_fft_coefficients):
         highest_frequency = self.get_highest_frequency(sampling_rate)
@@ -103,7 +107,7 @@ class FeatureExtractor:
         return periodogram_estimates @ mel_filter_banks.T
 
     @staticmethod
-    def get_log_mel_coefficients(mel_spectograms):
+    def convert_power_to_db(mel_spectograms):
         return librosa.power_to_db(mel_spectograms)
 
     @staticmethod
