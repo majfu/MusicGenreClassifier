@@ -19,3 +19,9 @@ ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/lab
 TRAIN_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/train.csv'
 VAL_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/val.csv'
 TEST_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/test.csv'
+
+STD_TRAIN_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/train_std.pt'
+MEAN_TRAIN_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/train_mean.pt'
+
+STD_VAL_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/val_std.pt'
+MEAN_VAL_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/val_mean.pt'

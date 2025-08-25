@@ -144,3 +144,9 @@ def save_feature_array(wav_path, feature_tensor, audio_files_folder_path, output
 
 def load_feature_tensor(pt_file_path):
     return torch.load(pt_file_path).float()
+
+
+def calculate_and_save_dataset_mean_and_std(dataset, mean_output_path, std_output_path):
+    mean, std = dataset.get_global_mean_and_std()
+    torch.save(mean, mean_output_path)
+    torch.save(std, std_output_path)
