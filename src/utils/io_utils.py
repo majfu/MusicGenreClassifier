@@ -117,6 +117,23 @@ def create_and_save_feature_arrays(feature_extractor, audio_files_folder_path=AU
                 print(f"Error extracting features from {wav_path}: {e}")
 
 
+def create_and_save_spectograms(feature_extractor, audio_files_folder_path=AUDIO_FILES_FOLDER_PATH,
+                                output_folder_path=SPECTROGRAMS_FOLDER_PATH):
+    for root, dirs, files in os.walk(audio_files_folder_path):
+        for file in files:
+            if not file.endswith('.wav'):
+                continue
+
+            wav_path = os.path.join(root, file)
+            try:
+                feature_array = feature_extractor.extract_spectrograms(wav_path)
+                feature_tensor = torch.from_numpy(feature_array).float()
+                save_feature_array(wav_path, feature_tensor, audio_files_folder_path, output_folder_path)
+
+            except Exception as e:
+                print(f"Error extracting features from {wav_path}: {e}")
+
+
 def save_feature_array(wav_path, feature_tensor, audio_files_folder_path, output_folder_path):
     output_path = (wav_path.
                    replace(audio_files_folder_path, output_folder_path).
