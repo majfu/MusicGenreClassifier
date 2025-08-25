@@ -13,6 +13,7 @@ AUDIO_FILES_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/wav_audio_files'
 
 INDEX_MAPPING_FILE_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/index_mapping.csv'
 FEATURE_VECTORS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_small_features'
+SPECTROGRAMS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/spectrograms'
 
 ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/labels.csv'
 TRAIN_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/train.csv'
