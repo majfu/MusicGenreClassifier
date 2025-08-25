@@ -32,10 +32,10 @@ class FeatureDataset(Dataset):
 
         return feature_tensor, label
 
-    def _get_track_id_by_index(self, index):
+    def get_track_id_by_index(self, index):
         return self.audio_labels.iloc[index]['track_id']
 
-    def __get_global_mean_and_std(self, batch_size=32):
+    def get_global_mean_and_std(self, batch_size=32):
         data_loader = DataLoader(self, batch_size=batch_size, shuffle=False)
 
         features_sum = 0.0
