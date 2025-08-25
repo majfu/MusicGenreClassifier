@@ -117,7 +117,7 @@ def create_and_save_feature_arrays(feature_extractor, audio_files_folder_path=AU
                 print(f"Error extracting features from {wav_path}: {e}")
 
 
-def create_and_save_spectograms(feature_extractor, audio_files_folder_path=AUDIO_FILES_FOLDER_PATH,
+def create_and_save_spectrograms(feature_extractor, audio_files_folder_path=AUDIO_FILES_FOLDER_PATH,
                                 output_folder_path=SPECTROGRAMS_FOLDER_PATH):
     for root, dirs, files in os.walk(audio_files_folder_path):
         for file in files:
