@@ -17,7 +17,7 @@ class FeatureDataset(Dataset):
         return len(self.audio_labels)
 
     def __getitem__(self, index):
-        track_id = self._get_track_id_by_index(index)
+        track_id = self.get_track_id_by_index(index)
 
         feature_tensor_path = self.feature_tensors_dir / f'{track_id}.pt'
         feature_tensor = load_feature_tensor(feature_tensor_path)
