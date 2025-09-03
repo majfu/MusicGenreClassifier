@@ -86,8 +86,8 @@ def pad_or_truncate(audio_signal):
     return librosa.util.fix_length(audio_signal, size=AUDIO_LENGTH_SAMPLES)
 
 
-def create_labels_file(labels_df):
-    labels_df.to_csv(ENCODED_LABELS_OUTPUT_PATH, index=False)
+def create_labels_file(labels_df, output_path):
+    labels_df.to_csv(output_path, index=False)
 
 
 def load_encoded_labels_df(encoded_labels_file_path=ENCODED_LABELS_OUTPUT_PATH):
