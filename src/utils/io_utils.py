@@ -53,12 +53,10 @@ def get_wav_output_path(track_id, output_folder_path):
     return output_folder_path / f"{str(track_id)}.wav"
 
 
-def remove_outlier_files(label_encoder, audio_files_folder_path=WAV_FILES_FOLDER_PATH):
+def remove_selected_wav_files(track_ids_to_remove, audio_files_folder_path=WAV_FILES_FOLDER_PATH):
     audio_files_path = Path(audio_files_folder_path)
 
-    for track_id in LENGTH_OUTLIERS_TRACK_IDS:
-        label_encoder.add_track_id_to_remove(track_id)
-
+    for track_id in track_ids_to_remove:
         audio_path = audio_files_path / f"{track_id}.wav"
         audio_path.unlink()
 
