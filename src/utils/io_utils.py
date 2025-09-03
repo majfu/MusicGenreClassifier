@@ -57,7 +57,7 @@ def remove_selected_wav_files(track_ids_to_remove, audio_files_folder_path=WAV_F
     audio_files_path = Path(audio_files_folder_path)
 
     for track_id in track_ids_to_remove:
-        audio_path = audio_files_path / f"{track_id}.wav"
+        audio_path = audio_files_path / f"{str(track_id)}.wav"
         audio_path.unlink()
 
 
