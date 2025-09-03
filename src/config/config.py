@@ -1,4 +1,5 @@
 SHOULD_DELETE_MP3 = True
+FMA_SUBDATASET_NAME = 'medium'
 
 CONTENT_DRIVE_PATH = '/content/drive'
 PROJECT_FOLDER_PATH = '/content/drive/MyDrive/MGCProject'
@@ -15,6 +16,7 @@ INDEX_MAPPING_FILE_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/index_
 FEATURE_VECTORS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_small_features'
 SPECTROGRAMS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/spectrograms'
 
+INITIAL_ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/labels_initial.csv'
 ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/labels.csv'
 TRAIN_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/train.csv'
 VAL_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/val.csv'
