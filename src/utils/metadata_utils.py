@@ -55,3 +55,7 @@ def print_top_label_combinations(labels_df, top_n=10):
     combo_counts.columns = ['label_combination', 'count']
 
     print(combo_counts.head(top_n))
+
+
+def get_track_ids_list(labels_df):
+    return labels_df['track_id'].tolist()
