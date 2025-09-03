@@ -99,26 +99,32 @@ def create_and_save_feature_arrays(feature_extractor, audio_files_folder_path=WA
 
 def create_and_save_spectrograms(feature_extractor, audio_files_folder_path=WAV_FILES_FOLDER_PATH,
                                  output_folder_path=SPECTROGRAMS_FOLDER_PATH):
-    for root, dirs, files in os.walk(audio_files_folder_path):
-        for file in files:
-            if not file.endswith('.wav'):
-                continue
+    audio_files_folder_path = Path(audio_files_folder_path)
+    output_folder_path - Path(output_folder_path)
+    os.makedirs(os.path.dirname(output_folder_path), exist_ok=True)
 
-            wav_path = os.path.join(root, file)
-            try:
-                feature_array = feature_extractor.extract_spectrograms(wav_path)
-                feature_tensor = torch.from_numpy(feature_array).float()
-                save_feature_array(wav_path, feature_tensor, audio_files_folder_path, output_folder_path)
+    for wav_file in audio_files_folder_path.rglob('*.wav'):
+        file_stem = wav_file.stem
+        pt_path = get_pt_output_path(file_stem, output_folder_path)
 
-            except Exception as e:
-                print(f"Error extracting features from {wav_path}: {e}")
+        if pt_path.exists():
+            print(f"{pt_path} already exists")
+            continue
+
+        try:
+            feature_array = feature_extractor.extract_spectrograms(wav_file)
+            feature_tensor = torch.from_numpy(feature_array).float()
+            save_feature_array(feature_tensor, pt_path)
+
+        except Exception as e:
+            print(f"Error extracting features from {wav_file}: {e}")
 
 
-def save_feature_array(wav_path, feature_tensor, audio_files_folder_path, output_folder_path):
-    output_path = (wav_path.
-                   replace(audio_files_folder_path, output_folder_path).
-                   replace('.wav', '.pt'))
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+def get_pt_output_path(file_stem, output_folder_path):
+    return output_folder_path / f"{file_stem}.pt"
+
+
+def save_feature_array(feature_tensor, output_path):
     torch.save(feature_tensor, output_path)
 
 
