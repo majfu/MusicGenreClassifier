@@ -6,7 +6,6 @@ import torch
 from pydub import AudioSegment
 import librosa
 from pathlib import Path
-import shutil
 
 
 def create_labels_file(labels_df, output_path):
@@ -58,7 +57,9 @@ def remove_selected_wav_files(track_ids_to_remove, audio_files_folder_path=WAV_F
 
     for track_id in track_ids_to_remove:
         audio_path = audio_files_path / f"{str(track_id)}.wav"
-        audio_path.unlink()
+
+        if audio_path.exists():
+            audio_path.unlink()
 
 
 def load_audio_file(wav_file_path, sampling_rate=SAMPLING_RATE):
