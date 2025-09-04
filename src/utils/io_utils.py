@@ -99,9 +99,9 @@ def create_and_save_feature_arrays(feature_extractor, audio_files_folder_path=WA
 
 def create_and_save_spectrograms(feature_extractor, audio_files_folder_path=WAV_FILES_FOLDER_PATH,
                                  output_folder_path=SPECTROGRAMS_FOLDER_PATH):
-    audio_files_folder_path = Path(audio_files_folder_path)
-    output_folder_path - Path(output_folder_path)
     os.makedirs(os.path.dirname(output_folder_path), exist_ok=True)
+    audio_files_folder_path = Path(audio_files_folder_path)
+    output_folder_path = Path(output_folder_path)
 
     for wav_file in audio_files_folder_path.rglob('*.wav'):
         file_stem = wav_file.stem
