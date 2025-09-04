@@ -8,11 +8,10 @@ METADATA_ZIP_FILE_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata.zip'
 TRACKS_METADATA_FILE_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/tracks.csv'
 GENRES_METADATA_FILE_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/genres.csv'
 
-FMA_SMALL_ZIP_PATH = '/content/drive/MyDrive/MGCProject/fma_small.zip'
+FMA_SMALL_ZIP_PATH = '/content/drive/MyDrive/MGCProject/fma_medium.zip'
 MP3_FILES_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_medium'
 WAV_FILES_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/wav_audio_files'
 
-INDEX_MAPPING_FILE_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/index_mapping.csv'
 FEATURE_VECTORS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_small_features'
 SPECTROGRAMS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/spectrograms'
 
