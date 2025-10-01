@@ -31,6 +31,9 @@ class FeatureExtractor:
 
     def extract_spectrograms(self, wav_file_path):
         audio_signal, sampling_rate = load_audio_file(wav_file_path)
+        return self.get_spectrogram_from_loaded_file(audio_signal, sampling_rate)
+
+    def get_spectrogram_from_loaded_file(self, audio_signal, sampling_rate):
         frame_length_samples = self.get_frame_length_samples(sampling_rate)
         hop_length_samples = self.get_hop_length_samples(sampling_rate)
 
