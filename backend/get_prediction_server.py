@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from backend.prediction_service import PredictionService
 import os
-from src.config.config import LOCAL_AUDIO_FILES_DIR, MODEL_MODE
+from src.config.config import MODEL_MODE
+from backend.path_utils import get_audio_files_dir_path
 
 app = Flask(__name__)
 
@@ -10,8 +11,9 @@ app = Flask(__name__)
 def get_prediction():
     file = request.files['file']
 
-    os.makedirs(LOCAL_AUDIO_FILES_DIR, exist_ok=True)
-    file_path = os.path.join(LOCAL_AUDIO_FILES_DIR, file.filename)
+    audio_files_dir = str(get_audio_files_dir_path())
+    os.makedirs(audio_files_dir, exist_ok=True)
+    file_path = os.path.join(audio_files_dir, file.filename)
     file.save(file_path)
 
     prediction_service = PredictionService(file_path, MODEL_MODE)
