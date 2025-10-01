@@ -16,23 +16,23 @@ WAV_FILES_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/wav_audio_files'
 FEATURE_VECTORS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_small_features'
 SPECTROGRAMS_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/spectrograms'
 
-INITIAL_ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/approach1/labels_initial.csv'
-ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/approach1/labels.csv'
-TRAIN_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/approach1/train.csv'
-VAL_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/approach1/val.csv'
-TEST_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/approach1/test.csv'
+INITIAL_ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/multilabel/labels_initial.csv'
+ENCODED_LABELS_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/multilabel/labels.csv'
+TRAIN_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/multilabel/train.csv'
+VAL_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/multilabel/val.csv'
+TEST_SPLIT_OUTPUT_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/multilabel/test.csv'
 
-INITIAL_ENCODED_LABELS_OUTPUT_PATH_2 = '/content/drive/MyDrive/MGCProject/fma_metadata/approach2/labels_all_initial.csv'
-ENCODED_LABELS_OUTPUT_PATH_2 = '/content/drive/MyDrive/MGCProject/fma_metadata/approach2/labels_all.csv'
-GENRES_METADATA_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/approach2/genres_metadata'
+INITIAL_ENCODED_LABELS_OUTPUT_PATH_2 = '/content/drive/MyDrive/MGCProject/fma_metadata/binary/labels_all_initial.csv'
+ENCODED_LABELS_OUTPUT_PATH_2 = '/content/drive/MyDrive/MGCProject/fma_metadata/binary/labels_all.csv'
+GENRES_METADATA_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/binary/genres_metadata'
 
 
-MEAN_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/approach1/train_mean.pt'
-STD_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/approach1/train_std.pt'
-MULILABEL_MODEL_BEST_REL_PATH = 'MusicGenreClassifier/MGCmodel/approach1/model.pt'
+MEAN_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/train_mean.pt'
+STD_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/train_std.pt'
+MULILABEL_MODEL_BEST_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/model.pt'
 
-BINARY_MODELS_DIR_REL_PATH = 'MusicGenreClassifier/MGCmodel/approach2/models'
-GENRES_METADATA_LOCAL_DIR_PATH = 'MusicGenreClassifier/MGCmodel/approach2/genres_metadata'
+BINARY_MODELS_DIR_REL_PATH = 'MusicGenreClassifier/MGCmodel/binary/models'
+GENRES_METADATA_LOCAL_DIR_PATH = 'MusicGenreClassifier/MGCmodel/binary/genres_metadata'
 
 LOCAL_AUDIO_FILES_DIR_REL_PATH = '/MusicGenreClassifier/backend/audio_files'
 

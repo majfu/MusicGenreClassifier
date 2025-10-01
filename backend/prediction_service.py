@@ -4,11 +4,11 @@ import librosa
 from src.config.parameters import *
 from backend.preprocessing_pipeline import PreprocessingPipeline
 import torch
-from MGCmodel.approach1.mgc_cnn_multilabel import MultilabelMusicGenreCNN
+from MGCmodel.multilabel.mgc_cnn_multilabel import MultilabelMusicGenreCNN
 from pydub import AudioSegment
 from backend.path_utils import *
-from MGCmodel.approach2.mgc_cnn_binary import BinaryMusicGenreCNN
-from MGCmodel.approach2.mgc_cnn_binary_v2 import Binary2MusicGenreCNN
+from MGCmodel.binary.mgc_cnn_binary import BinaryMusicGenreCNN
+from MGCmodel.binary.mgc_cnn_binary_v2 import Binary2MusicGenreCNN
 
 
 class PredictionService:
