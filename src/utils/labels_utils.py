@@ -1,6 +1,6 @@
 from src.data.label_encoder import LabelEncoder
 from src.utils.metadata_utils import print_genre_counts, print_top_label_combinations
-from config.hyperparameters import *
+from config.parameters import *
 
 
 def remove_single_label_samples(labels_df, max_sample_count_per_genre=MAX_GENRE_SAMPLES_COUNT,

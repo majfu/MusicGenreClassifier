@@ -1,13 +1,13 @@
 import numpy as np
 from skmultilearn.model_selection import iterative_train_test_split
-from src.config import hyperparameters
+from src.config.parameters import VAL_RATIO, TEST_RATIO
 import pandas as pd
 
 
 class MultilabelStratifiedSplitter:
     def __init__(self, val_ratio=None, test_ratio=None):
-        self.val_ratio = val_ratio or hyperparameters.VAL_RATIO
-        self.test_ratio = test_ratio or hyperparameters.TEST_RATIO
+        self.val_ratio = val_ratio or VAL_RATIO
+        self.test_ratio = test_ratio or TEST_RATIO
 
     def get_dataset_splits(self, encoded_labels_df):
         track_ids = encoded_labels_df[['track_id']].values

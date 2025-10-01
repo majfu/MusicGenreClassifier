@@ -1,5 +1,5 @@
 from src.config.config import *
-from src.config.hyperparameters import *
+from src.config.parameters import *
 import pandas as pd
 import os
 import torch

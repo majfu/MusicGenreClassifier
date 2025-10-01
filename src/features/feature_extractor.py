@@ -3,7 +3,7 @@ import librosa
 from scipy.fftpack import dct
 import scipy.fft
 from src.utils.io_utils import load_audio_file
-from src.config import hyperparameters
+from src.config.parameters import *
 
 LOWEST_FREQUENCY = 0
 SECOND_IN_MS = 1000
@@ -12,11 +12,11 @@ SECOND_IN_MS = 1000
 class FeatureExtractor:
     def __init__(self, frame_length_ms=None, hop_length_ms=None, mel_bands_number=None,
                  number_of_retained_coefficients=None, delta_window_width=None):
-        self.frame_length_ms = frame_length_ms or hyperparameters.FRAME_LENGTH_MS
-        self.hop_length_ms = hop_length_ms or hyperparameters.HOP_LENGTH_MS
-        self.mel_bands_number = mel_bands_number or hyperparameters.MEL_BANDS_NUMBER
-        self.number_of_retained_coefficients = number_of_retained_coefficients or hyperparameters.NUMBER_OF_RETAINED_COEFFICIENTS
-        self.delta_window_width = delta_window_width or hyperparameters.DELTA_WINDOW_WIDTH
+        self.frame_length_ms = frame_length_ms or FRAME_LENGTH_MS
+        self.hop_length_ms = hop_length_ms or HOP_LENGTH_MS
+        self.mel_bands_number = mel_bands_number or MEL_BANDS_NUMBER
+        self.number_of_retained_coefficients = number_of_retained_coefficients or NUMBER_OF_RETAINED_COEFFICIENTS
+        self.delta_window_width = delta_window_width or DELTA_WINDOW_WIDTH
 
     def extract_features(self, wav_file_path):
         db_mel_spectrograms = self.extract_spectrograms(wav_file_path)
