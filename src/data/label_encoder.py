@@ -1,5 +1,5 @@
 from src.config.config import *
-from src.config.hyperparameters import MIN_GENRE_SAMPLES_COUNT, GENRES_TO_DROP
+from src.config.parameters import MIN_GENRE_SAMPLES_COUNT, GENRES_TO_DROP
 import pandas as pd
 from src.utils import fma_utils
 
@@ -7,12 +7,15 @@ from src.utils import fma_utils
 class LabelEncoder:
     def __init__(self, tracks_metadata_file_path=None, genres_metadata_file_path=None, track_ids_to_remove=None,
                  min_genre_samples_count=None, genres_to_drop=None, subset=None):
-        self.tracks_metadata_file_path = tracks_metadata_file_path or TRACKS_METADATA_FILE_PATH
-        self.genres_metadata_file_path = genres_metadata_file_path or GENRES_METADATA_FILE_PATH
-        self.track_ids_to_remove = track_ids_to_remove or []
-        self.min_genre_samples_count = min_genre_samples_count or MIN_GENRE_SAMPLES_COUNT
-        self.genres_to_drop = genres_to_drop or GENRES_TO_DROP
-        self.subset = subset or FMA_SUBDATASET_NAME
+        self.tracks_metadata_file_path = tracks_metadata_file_path or TRACKS_METADATA_FILE_PATH if (
+                tracks_metadata_file_path is not None) else TRACKS_METADATA_FILE_PATH
+        self.genres_metadata_file_path = genres_metadata_file_path if genres_metadata_file_path is not None else (
+            GENRES_METADATA_FILE_PATH)
+        self.track_ids_to_remove = [] if track_ids_to_remove is None else track_ids_to_remove
+        self.min_genre_samples_count = MIN_GENRE_SAMPLES_COUNT if min_genre_samples_count is None else (
+            min_genre_samples_count)
+        self.genres_to_drop = GENRES_TO_DROP if genres_to_drop is None else genres_to_drop
+        self.subset = FMA_SUBDATASET_NAME if subset is None else subset
 
     def add_track_id_to_remove(self, track_id):
         self.track_ids_to_remove.append(track_id)
@@ -46,8 +49,8 @@ class LabelEncoder:
 
     def get_subset_tracks_metadata_df(self):
         tracks_metadata_df = fma_utils.load(self.tracks_metadata_file_path)
-        small_mask = tracks_metadata_df['set', 'subset'] <= self.subset
-        return tracks_metadata_df[small_mask]
+        mask = tracks_metadata_df['set', 'subset'] <= self.subset
+        return tracks_metadata_df[mask]
 
     @staticmethod
     def get_all_track_genre_pairs(tracks_metadata_df):
