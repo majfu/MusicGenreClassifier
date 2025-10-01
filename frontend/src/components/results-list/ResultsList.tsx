@@ -5,12 +5,6 @@ interface ResultsListProps {
 }
 
 function ResultsList({ resultsList }: ResultsListProps) {
-  if (resultsList.length === 0) {
-    return (
-      <h1>OOOPS! Looks like we could not classify your audio genre T-T</h1>
-    );
-  }
-
   return (
     <>
       <span className="app-text">Your audio was classified as:</span>

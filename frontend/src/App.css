@@ -60,3 +60,36 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.error-message {
+    background-color: #D3A7C6;
+    color: #564D53;
+    font-size: 36px;
+    font-family: 'Irish Grover';
+    border: 15px solid #564D53;
+    padding: 30px;
+    padding: 30px 80px 30px 70px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.error-close-btn {
+    color: #564D53;
+    background-color: #D3A7C6;
+    font-size: 40px;
+    border: none;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.reset-btn {
+    color: #564D53;
+    background-color: #D3A7C6;
+    font-size: 40px;
+    margin-top: 30px;
+    margin-left: 150px;
+    border: 5px solid #564D53;
+    font-family: 'Irish Grover';
+    padding: 5px 30px 5px 30px;
+}
