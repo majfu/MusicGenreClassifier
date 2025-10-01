@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 def create_labels_file(labels_df, output_path):
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     labels_df.to_csv(output_path, index=False)
 
 
@@ -27,7 +28,7 @@ def convert_selected_mp3_to_wav(track_ids_to_convert, mp3_folder_path=MP3_FILES_
 
         wav_path = get_wav_output_path(track_id, output_folder_path)
         if wav_path.exists():
-            print(f"{mp3_file} already exists")
+            print(f"{wav_path} already exists")
             continue
 
         try:
