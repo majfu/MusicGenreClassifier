@@ -34,7 +34,7 @@ MULILABEL_MODEL_BEST_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/model.
 BINARY_MODELS_DIR_REL_PATH = 'MusicGenreClassifier/MGCmodel/binary/models'
 GENRES_METADATA_LOCAL_DIR_PATH = 'MusicGenreClassifier/MGCmodel/binary/genres_metadata'
 
-LOCAL_AUDIO_FILES_DIR_REL_PATH = '/MusicGenreClassifier/backend/audio_files'
+LOCAL_AUDIO_FILES_DIR_REL_PATH = 'MusicGenreClassifier/backend/audio_files'
 
 # set this as your local parent path of MusicGenreClassifier
 # LOCAL_ROOT_PATH = 

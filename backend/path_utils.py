@@ -27,4 +27,4 @@ def get_multilabel_model_path():
 
 
 def get_audio_files_dir_path():
-    return Path(LOCAL_ROOT_PATH) / Path(LOCAL_AUDIO_FILES_DIR)
+    return Path(LOCAL_ROOT_PATH) / Path(LOCAL_AUDIO_FILES_DIR_REL_PATH)
