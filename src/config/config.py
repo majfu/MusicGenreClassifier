@@ -30,9 +30,11 @@ GENRES_METADATA_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/bi
 MEAN_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/train_mean.pt'
 STD_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/train_std.pt'
 MULILABEL_MODEL_BEST_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/model.pt'
+MULTILABEL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel'
 
 BINARY_MODELS_DIR_REL_PATH = 'MusicGenreClassifier/MGCmodel/binary/models'
 GENRES_METADATA_LOCAL_DIR_PATH = 'MusicGenreClassifier/MGCmodel/binary/genres_metadata'
+BINARY_PATH = 'MusicGenreClassifier/MGCmodel/binary'
 
 LOCAL_AUDIO_FILES_DIR_REL_PATH = 'MusicGenreClassifier/backend/audio_files'
 

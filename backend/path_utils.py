@@ -28,3 +28,19 @@ def get_multilabel_model_path():
 
 def get_audio_files_dir_path():
     return Path(LOCAL_ROOT_PATH) / Path(LOCAL_AUDIO_FILES_DIR_REL_PATH)
+
+
+def get_binary_test_split_path(genre_name):
+    return Path(LOCAL_ROOT_PATH) / Path(GENRES_METADATA_LOCAL_DIR_PATH) / Path(f"{genre_name}/test.csv")
+
+
+def get_binary_result_output_path():
+    return Path(LOCAL_ROOT_PATH) / Path(BINARY_PATH + "/binary_test_split_performance.txt")
+
+
+def get_multilabel_test_split_path():
+    return Path(LOCAL_ROOT_PATH) / Path(MULTILABEL_PATH + "/test.csv")
+
+
+def get_multilabel_result_output_path():
+    return Path(LOCAL_ROOT_PATH) / Path(MULTILABEL_PATH + "/multilabel_test_split_performance.txt")
