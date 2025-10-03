@@ -1,0 +1,11 @@
+Classical: F1=0.9381, Precision=0.9138, Recall=0.9636, Accuracy=0.9364, Loss=0.2948
+Dance: F1=0.7708, Precision=0.7255, Recall=0.8222, Accuracy=0.7556, Loss=0.5850
+Electronic: F1=0.8732, Precision=0.8732, Recall=0.8732, Accuracy=0.8732, Loss=0.3014
+Experimental: F1=0.7892, Precision=0.7816, Recall=0.7970, Accuracy=0.7871, Loss=0.4308
+Hip-Hop: F1=0.9119, Precision=0.9312, Recall=0.8934, Accuracy=0.9137, Loss=0.2474
+Metal: F1=0.7925, Precision=0.7778, Recall=0.8077, Accuracy=0.7885, Loss=0.3995
+Old-Time: F1=0.9778, Precision=0.9778, Recall=0.9778, Accuracy=0.9778, Loss=0.0321
+Pop: F1=0.7081, Precision=0.7184, Recall=0.6981, Accuracy=0.7123, Loss=0.5730
+Punk: F1=0.8403, Precision=0.8018, Recall=0.8826, Accuracy=0.8322, Loss=0.3996
+Rock: F1=0.8880, Precision=0.8752, Recall=0.9013, Accuracy=0.8864, Loss=0.2842
+Techno: F1=0.7974, Precision=0.7531, Recall=0.8472, Accuracy=0.7847, Loss=0.4661
