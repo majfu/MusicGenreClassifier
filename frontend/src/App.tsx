@@ -111,7 +111,7 @@ function App() {
       {selectedFile && (
         <div className="file-selected-display">
           <FileNameDisplay>{selectedFile.name}</FileNameDisplay>
-          <GoButton file={selectedFile} onGoClick={handleGoClick} />
+          <GoButton onGoClick={handleGoClick} />
           <div ref={selectedEndRef} />
         </div>
       )}
