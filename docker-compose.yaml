@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    container_name: mgc-app
+    ports:
+      - "80:80"
+      - "5000:5000"

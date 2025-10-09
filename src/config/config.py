@@ -27,16 +27,16 @@ ENCODED_LABELS_OUTPUT_PATH_2 = '/content/drive/MyDrive/MGCProject/fma_metadata/b
 GENRES_METADATA_FOLDER_PATH = '/content/drive/MyDrive/MGCProject/fma_metadata/binary/genres_metadata'
 
 
-MEAN_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/train_mean.pt'
-STD_LOCAL_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/train_std.pt'
-MULILABEL_MODEL_BEST_REL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel/model.pt'
-MULTILABEL_PATH = 'MusicGenreClassifier/MGCmodel/multilabel'
+MEAN_LOCAL_REL_PATH = 'MGCmodel/multilabel/train_mean.pt'
+STD_LOCAL_REL_PATH = 'MGCmodel/multilabel/train_std.pt'
+MULILABEL_MODEL_BEST_REL_PATH = 'MGCmodel/multilabel/model.pt'
+MULTILABEL_PATH = 'MGCmodel/multilabel'
 
-BINARY_MODELS_DIR_REL_PATH = 'MusicGenreClassifier/MGCmodel/binary/models'
-GENRES_METADATA_LOCAL_DIR_PATH = 'MusicGenreClassifier/MGCmodel/binary/genres_metadata'
-BINARY_PATH = 'MusicGenreClassifier/MGCmodel/binary'
+BINARY_MODELS_DIR_REL_PATH = 'MGCmodel/binary/models'
+GENRES_METADATA_LOCAL_DIR_PATH = 'MGCmodel/binary/genres_metadata'
+BINARY_PATH = 'MGCmodel/binary'
 
-LOCAL_AUDIO_FILES_DIR_REL_PATH = 'MusicGenreClassifier/backend/audio_files'
+LOCAL_AUDIO_FILES_DIR_REL_PATH = 'backend/audio_files'
 
-# set this as your local parent path of MusicGenreClassifier
-# LOCAL_ROOT_PATH = 
+# set this as your local path of MusicGenreClassifier, if you are running this in a docker container, set as '/app'
+LOCAL_ROOT_PATH = '/app'

@@ -1,0 +1,11 @@
+librosa
+Flask
+tqdm
+torch
+torchmetrics
+pydub
+matplotlib
+numpy
+pandas
+scikit-multilearn
+scipy
