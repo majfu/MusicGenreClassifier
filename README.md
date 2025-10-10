@@ -1,9 +1,13 @@
 My first bigger machine learning project, I am very proud of it (˶ᵔ ᵕ ᵔ˶)
 
-I trained models for music genre classification task. The first approach was a single model for multilabel prediction, but the performance was mediocre. The second approach was to train a binary classifier for each genre, and here the performance improved.
-
+I trained models for music genre classification task. The first approach was a single model for multilabel prediction, but the performance was mediocre. The second approach was to train a binary classifier for each genre, and here the performance improved.  
 There is also a frontend written in React (my first time working with React) and a Flask backend to process the audio files.
 
+If you want to run it in a docker container, here is how (make sure the docker daemon is running):  
+git clone https://github.com/majfu/MusicGenreClassifier  
+cd MusicGenreClassifier  
+docker-compose up --build  
+and then go to http://127.0.0.1 and done!
 
 Results of model evaluation on test dataset
 
